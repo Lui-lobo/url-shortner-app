@@ -21,6 +21,14 @@ import { OptionalJwtAuthGuard } from '../../utils/strategies/auth/optionalJwtAut
 // Importando decorators
 import { GetUser } from '../../utils/decorators/auth/getUserDecorator';
 import { UserAgent } from '../../utils/decorators/requestInfo/userAgentDecorator';
+// Importando decoradores do swagger
+import { ApiOperation } from '@nestjs/swagger';
+// importando decoradores de documentação
+import { ShortUrl } from '../../utils/decorators/documentation/shortenedUrl/shortUrl';
+import { RegisterAccess } from '../../utils/decorators/documentation/shortenedUrl/registerAccess';
+import { listUserUrls } from '../../utils/decorators/documentation/shortenedUrl/listsUserUrls';
+import { UpdateUrl } from '../../utils/decorators/documentation/shortenedUrl/updateUrl';
+import { DeleteUrl } from '../../utils/decorators/documentation/shortenedUrl/deleteUrl';
 
 @Controller('shortenedUrls')
 export class ShortenedUrlController {
@@ -28,6 +36,10 @@ export class ShortenedUrlController {
 
   @Post()
   @UseGuards(OptionalJwtAuthGuard)
+  @ApiOperation({
+    summary: 'Encurta uma url para usuários autenticados e não autenticados',
+  })
+  @ShortUrl()
   async shortenUrl(
     @Body() dto: ShortenUrlDto,
     @UserAgent() userAgent: string,
@@ -37,18 +49,32 @@ export class ShortenedUrlController {
   }
 
   @Get('registerAccess/')
+  @ApiOperation({
+    summary:
+      'Realiza o acesso a uma url encurtada e aumenta a quantidade de acessos!',
+  })
+  @RegisterAccess()
   async registerAccess(@Query() urlObject: RegisterUrlAccessDto) {
     const { shortenedUrl } = urlObject;
     return this.shortenedUrlService.registerAccess(shortenedUrl);
   }
 
   @Get('list')
+  @ApiOperation({
+    summary:
+      'Lista todas as URLs encurtadas geradas por um usuário autenticado!',
+  })
+  @listUserUrls()
   @UseGuards(JwtAuthGuard)
   async listUserUrls(@GetUser('userId') userId: string) {
     return this.shortenedUrlService.listUserUrls(userId);
   }
 
   @Put('')
+  @ApiOperation({
+    summary: 'Atualiza a url original no qual a url encurtada está apontando!',
+  })
+  @UpdateUrl()
   @UseGuards(JwtAuthGuard)
   async updateUrl(
     @Body() updateUrlData: UpdateUrlDto,
@@ -59,6 +85,10 @@ export class ShortenedUrlController {
   }
 
   @Delete('')
+  @ApiOperation({
+    summary: 'Realiza a exclusão lógica de uma url encurtada de um usuário',
+  })
+  @DeleteUrl()
   @UseGuards(JwtAuthGuard)
   async deleteUrl(
     @Query() deleteUrlData: DeleteUrlDto,
