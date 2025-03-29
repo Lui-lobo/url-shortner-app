@@ -13,8 +13,8 @@ import { ShortenedUrlService } from './shortned-url.service';
 // Importando DTOs
 import { ShortenUrlDto } from '../../utils/dtos/shortnedUrls/shortenUrl.dto';
 import { RegisterUrlAccessDto } from '../../utils/dtos/shortnedUrls/registerUrlDto';
-import { UpdateUrlDto } from 'src/utils/dtos/shortnedUrls/updateUrlDto';
-import { DeleteUrlDto } from 'src/utils/dtos/shortnedUrls/deleteUrlDto';
+import { UpdateUrlDto } from '../../utils/dtos/shortnedUrls/updateUrlDto';
+import { DeleteUrlDto } from '../../utils/dtos/shortnedUrls/deleteUrlDto';
 // Importando guards
 import { JwtAuthGuard } from '../../utils/guards/auth/jwtAuthGuard';
 import { OptionalJwtAuthGuard } from '../../utils/strategies/auth/optionalJwtAuthGuard';

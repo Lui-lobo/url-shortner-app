@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 // Importando serviços
 import { PrismaService } from '../../database/orm/prisma/prisma.service';
-import { LoggerService } from '../..//helpers/logger/logger.service';
+import { LoggerService } from '../../helpers/logger/logger.service';
 // Importando DTOs
 import { CreateUserDto } from '../../utils/dtos/user/createUserDto';
 import { FindUserByEmailDto } from '../..//utils/dtos/user/findUserByEmailDto';

@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 // Importando serviços
-import { LoggerService } from 'src/helpers/logger/logger.service';
-//import { UsersService } from '../users/users.service';
-import { PrismaService } from 'src/database/orm/prisma/prisma.service';
+import { LoggerService } from '../../helpers/logger/logger.service';
+import { PrismaService } from '../../database/orm/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 // Importando DTOs
 import { ValidateUserDto } from '../../utils/dtos/auth/validateUserDto';
