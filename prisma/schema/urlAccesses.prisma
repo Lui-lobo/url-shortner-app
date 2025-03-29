@@ -1,0 +1,10 @@
+model UrlAccess {
+  id             String   @id @default(cuid())
+  shortenedUrlId String
+  updatedAt      DateTime @updatedAt @default(now())
+  deletedAt      DateTime?
+  accessedAt     DateTime @default(now())
+  ipAddress      String?
+
+  shortenedUrl ShortenedUrl @relation(fields: [shortenedUrlId], references: [id], onDelete: Cascade)
+}

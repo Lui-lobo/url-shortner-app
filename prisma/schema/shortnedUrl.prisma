@@ -1,0 +1,15 @@
+model ShortenedUrl {
+  id          String   @id @default(cuid())
+  originalUrl String
+  shortCode   String   @unique
+  createdAt   DateTime @default(now())
+  userId      String?  
+  updatedAt   DateTime @updatedAt @default(now())
+  deletedAt   DateTime? // Campo que indica quando o URL foi deletado logicamente
+  shortenedUrl String  @unique  @default("N/A")
+  user        User?    @relation(fields: [userId], references: [id])
+  origin      String   @default("N/A")
+  accessCount Int      @default(0)  // Novo campo para contar os acessos
+
+  accesses UrlAccess[]
+}

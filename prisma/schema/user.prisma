@@ -1,6 +1,10 @@
 model User {
-  id       String @id @default(uuid())
-  email    String @unique
-  password String
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+  deletedAt DateTime? // Campo que indica quando o URL foi deletado logicamente
+
+  shortenedUrls ShortenedUrl[] // Relacionamento com URLs encurtados
 }

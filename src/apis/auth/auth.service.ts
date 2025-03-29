@@ -16,18 +16,12 @@ import loginUser from './methods/loginUser';
 export class AuthService {
   constructor(
     private readonly loggerService: LoggerService,
-    //private readonly usersService: UsersService,
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
 
   async validateUser(userData: ValidateUserDto): Promise<Partial<User>> {
-    return await validateUser(
-      this.loggerService,
-      //this.usersService['prisma'],
-      this.prismaService,
-      userData,
-    );
+    return await validateUser(this.loggerService, this.prismaService, userData);
   }
 
   async login(user: Partial<User>) {

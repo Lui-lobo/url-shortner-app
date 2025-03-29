@@ -11,9 +11,16 @@ import { LoggerService } from './helpers/logger/logger.service';
 // Importando modulos
 import { LoggerModule } from './helpers/logger/logger.module';
 import { AuthModule } from './apis/auth/auth.module';
+import { ShortnedUrlModule } from './apis/shortned-url/shortned-url.module';
 
 @Module({
-  imports: [UsersModule, PrismaModule, LoggerModule, AuthModule],
+  imports: [
+    UsersModule,
+    PrismaModule,
+    LoggerModule,
+    AuthModule,
+    ShortnedUrlModule,
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService, LoggerService],
 })
