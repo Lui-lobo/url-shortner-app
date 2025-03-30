@@ -118,3 +118,40 @@ npm run start:dev
 ```
 
 6. Caso todos os passos acima tenham sido executados corretamente, o servidor estará sendo executado localmente em: ```http://localhost:3000```
+
+## 🧪 Como rodar os testes
+Para executar os testes unitários, apenas é necessário rodar o seguinte comando em seu terminal:
+
+```sh
+npm run test
+```
+
+---
+
+## 📄 Documentacação da Api
+A documentação da API url-shortener-app é gerada automaticamente com Swagger, permitindo que os usuários explorem e testem os endpoints de forma interativa.
+
+📌 Como acessar a documentação?
+Ao rodar a aplicação basta acessar a url:
+```sh
+http://localhost:3000/api#/
+```
+Nestá rota você encontrará a documentação de todas as apis do projeto!
+
+---
+
+## 🧭 Endpoints
+### Autenticação
+| Método  | URL                     | Descrição                        |
+|---------|-------------------------|----------------------------------|
+| **POST**  | `/auth/login`            | Realiza a autenticação de um usuário no sistema    |
+| **POST**  | `/auth/register`            | Registra um usuário no sistema    |
+
+### Encurtamento e gerenciamento de URLs
+| Método  | URL                     | Descrição                        |
+|---------|-------------------------|----------------------------------|
+| **POST**  | `/shortenedUrls`            | Encurta uma url para usuários autenticados e não autenticados  |
+| **PUT**  | `/shortenedUrls`            | Atualiza uma url encurtada   |
+| **DELETE**  | `/shortenedUrls?shortenedUrlId=idDaUrlEncurtada`            | Realiza a exclusão lógica de uma url encurtada no sistema   |
+| **GET**  | `/shortenedUrls/list`            | Lista todas as urls encurtadas de um usuário   |
+| **GET**  | `/shortenedUrls/registerAccess?shortenedUrl=http://localhost/aan0`            | Registra um acesso em uma url encurtada e retorna a url original para o usuário   |
