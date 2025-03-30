@@ -12,6 +12,7 @@ Uma API para encurtamento de URLs, permitindo que usuários gerem links curtos a
 - [🧪 Como rodar os testes](#como-rodar-os-testes)
 - [📄 Documentacação da Api](#documentacao)
 - [🧭 Endpoints](#endpoints)
+- [📈 Pontos de Melhoria](#pontos-de-melhoria)
 
 ---
 
@@ -155,3 +156,14 @@ Nestá rota você encontrará a documentação de todas as apis do projeto!
 | **DELETE**  | `/shortenedUrls?shortenedUrlId=idDaUrlEncurtada`            | Realiza a exclusão lógica de uma url encurtada no sistema   |
 | **GET**  | `/shortenedUrls/list`            | Lista todas as urls encurtadas de um usuário   |
 | **GET**  | `/shortenedUrls/registerAccess?shortenedUrl=http://localhost/aan0`            | Registra um acesso em uma url encurtada e retorna a url original para o usuário   |
+
+---
+
+## 📈 Pontos de Melhoria
+
+Embora o projeto já esteja funcional, há algumas melhorias que podem ser implementadas:
+- 🔐 Aprimoramento da segurança: Implementar rate limiting para evitar abuso de requisições.
+- 📡 Sistema de notificações: Notificar os usuários sobre acessos suspeitos às suas URLs.
+- 📊 Dashboard mais avançado: Incluir mais métricas e gráficos detalhados.
+- 🔄 URLs personalizadas: Permitir que usuários escolham um alias customizado para suas URLs encurtadas.
+- 📅 Expiração de URLs: Possibilitar a configuração de uma data de expiração para os links encurtados.
