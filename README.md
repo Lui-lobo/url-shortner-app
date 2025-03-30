@@ -43,3 +43,78 @@ A URL Shortener API fornece uma série de funcionalidades para o gerenciamento d
 ### 🔒 Segurança
 - Validação de autenticação para operações restritas.
 - Proteção contra duplicação de URLs dentro da conta do usuário.
+
+## 👷 Arquitetura e Diagramas
+
+Abaixo estão os diagramas ilustrando o fluxo da aplicação e sua arquitetura.
+
+Estrutura do banco de dados <br>
+O diagrama abaixo apresenta um modelo relacional da estrutura do banco de dados gerados via migrations.
+
+![Estrutura do banco](docs/diagrama_url_shortner_app.svg)
+
+Fluxograma da aplicação <br>
+O diagrama abaixo apresenta um fluxo de utilidade da Api REST da aplicação.
+
+![Fluxograma da aplicacao](docs/url_shortener_app.svg)
+
+## 🖥️ Como rodar o projeto
+
+### Como rodar o projeto com Docker Compose 🐋
+
+1️. Clone o repositório:
+```sh
+git clone https://github.com/Lui-lobo/url-shortner-app.git
+url-shortner-app
+```
+
+2. Instalação dos pacotes necessários
+```sh
+npm install
+```
+
+3. Executando o docker
+```sh
+docker compose up -d
+```
+
+4. Caso todos os passos acima tenham sido executados corretamente, o servidor estará sendo executado localmente em: ```http://localhost:3000```
+
+### Como rodar o projeto localmente ⌨
+Nota: Para rodar o projeto localmente é necessário que todas as depedências do projeto sejam instaladas, sendo elas:
+- O banco de dados postgres (Versões 15 para cima)
+- O NodeJs (Versões 18 para cima)
+
+1️. Clone o repositório:
+```sh
+git clone https://github.com/Lui-lobo/url-shortner-app.git
+url-shortner-app
+```
+
+2. Instalação dos pacotes necessários
+```sh
+npm install
+```
+
+3. Configurar as suas variaveis de ambiente para o uso local
+Crie um arquivo .env na raiz do projeto (dentro da pasta url-shortener-app) e configure as informações de ambiente como no exemplo abaixo:
+```sh
+DATABASE_URL="postgresql://postgres:1234@localhost:5432/urlShortnerDatabase?schema=public"
+JWT_SECRET="mysecretkey"
+JWT_EXPIRES_IN=3600s
+BASE_URL=http://localhost
+```
+Nota: A chave de criptografia está no .env devido ser uma aplicação local. (Está pratica nunca deve acontecer em servidores que sejam distribuidos para clientes, funcionarios ou empresas no geral.)
+
+4. Execute as migrações para gerar as tabelas no banco de dados
+```sh
+npx prisma migrate dev
+```
+Nota: Para o prisma poder gerar as migrações é necessário que o banco esteja localmente criado. Caso ele não exista, por favor crie o banco ```urlShortnerDatabase``` localmente em seu postgres para rodar as migrações.
+
+5. Inicie o servidor de desenvolvimento com o seguinte comando:
+```sh
+npm run start:dev
+```
+
+6. Caso todos os passos acima tenham sido executados corretamente, o servidor estará sendo executado localmente em: ```http://localhost:3000```
