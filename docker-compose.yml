@@ -1,0 +1,36 @@
+services:
+  api:
+    build:
+      context: .
+    container_name: url-shortner-api
+    environment:
+      - DATABASE_URL=postgresql://postgres:1234@postgres:5432/urlShortnerDatabase?schema=public
+      - JWT_SECRET="mysecretkey"
+      - JWT_EXPIRES_IN=3600s
+      - BASE_URL=http://localhost
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    command: bash -c "npm uninstall bcrypt && npm install bcrypt && npx prisma migrate deploy && npm start"
+
+  postgres:
+    image: postgres:15
+    container_name: url-shortner-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: urlShortnerDatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+volumes:
+  postgres_data:
